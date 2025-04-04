@@ -6,7 +6,7 @@ from datetime import datetime
 
 # Set page configuration
 st.set_page_config(
-    page_title="Weather Whisperer",
+    page_title="Weather Forecast",
     page_icon="🌤️",
     layout="wide"
 )
@@ -51,17 +51,11 @@ st.markdown("""
         text-align: center;
         color: #616161;
     }
-    .welcome-header {
-        text-align: center;
-        margin-bottom: 0.5rem;
-    }
-    .welcome-image {
-        display: block;
-        margin: 0 auto;
-        margin-bottom: 1rem;
-    }
 </style>
 """, unsafe_allow_html=True)
+
+# App header
+st.markdown("<h1 class='main-header'>🌤️ Weather Forecast</h1>", unsafe_allow_html=True)
 
 # Create sidebar for inputs
 with st.sidebar:
@@ -89,9 +83,6 @@ def convert_temp(temp, unit):
 
 # Main content area
 if place:
-    # App header for when a place is selected
-    st.markdown("<h1 class='main-header'>🌤️ Weather Forecast</h1>", unsafe_allow_html=True)
-
     try:
         # Get weather data
         filtered_data = get_data(place, days)
@@ -254,19 +245,12 @@ if place:
         st.error(f"An unexpected error occurred: {e}")
         st.info("Please try again later or contact support if the issue persists.")
 else:
-    # Display welcome message with image in title area when no location is entered
+    # Display welcome message when no location is entered
     st.markdown("""
-    <div style="text-align: center; padding: 0.5rem;">
-        <h1 class="main-header">Welcome to Weather Whisperer!</h1>
-        <img src="https://img.icons8.com/fluency/96/000000/partly-cloudy-day.png" width="96" class="welcome-image">
-        <h2>---  A Weather Forecast App  ---</h2>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Display the rest of the welcome content
-    st.markdown("""
-    <div style="text-align: center; padding: 1rem;">
-        <p>Enter a location to get started.</p>
+    <div style="text-align: center; padding: 2rem;">
+        <img src="https://img.icons8.com/fluency/96/000000/partly-cloudy-day.png" width="96">
+        <h2>Welcome to the Weather Forecast App!</h2>
+        <p>Enter a location in the sidebar to get started.</p>
     </div>
     """, unsafe_allow_html=True)
 
